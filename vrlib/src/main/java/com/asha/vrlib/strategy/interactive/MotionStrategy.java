@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
+import android.view.OrientationEventListener;
 
 import com.asha.vrlib.MD360Director;
 import com.asha.vrlib.common.VRUtil;
@@ -26,6 +27,8 @@ public class MotionStrategy extends AbsInteractiveStrategy implements SensorEven
     private boolean mRegistered = false;
 
     private Boolean mIsSupport = null;
+
+    private OrientationEventListener mOrientationEventListener;
 
     public MotionStrategy(InteractiveModeManager.Params params) {
         super(params);
@@ -89,11 +92,24 @@ public class MotionStrategy extends AbsInteractiveStrategy implements SensorEven
 
         mSensorManager.registerListener(this, sensor, getParams().mMotionDelay);
 
+        final Activity ctx = (Activity) context;
+        mOrientationEventListener = new OrientationEventListener(context, SensorManager.SENSOR_DELAY_NORMAL) {
+            @Override
+            public void onOrientationChanged(int orientation) {
+                mDeviceRotation = ctx.getWindowManager().getDefaultDisplay().getRotation();
+            }
+        };
+        mOrientationEventListener.enable();
+
         mRegistered = true;
     }
 
     protected void unregisterSensor(Context context){
         if (!mRegistered) return;
+
+        if(mOrientationEventListener != null) {
+            mOrientationEventListener.disable();
+        }
 
         SensorManager mSensorManager = (SensorManager) context
                 .getSystemService(Context.SENSOR_SERVICE);
