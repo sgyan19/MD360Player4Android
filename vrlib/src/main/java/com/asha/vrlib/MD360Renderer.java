@@ -61,7 +61,10 @@ public class MD360Renderer implements GLSurfaceView.Renderer {
 		
 		// enable depth testing
 		// GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-
+		MDAbsPlugin mainPlugin = mProjectionModeManager.getMainPlugin();
+		if (mainPlugin != null){
+			mainPlugin.reset();
+		}
 		mPluginManager.resetAll();
 	}
 

@@ -55,8 +55,9 @@ public class GLUtil {
     }
 
     public static String readTextFileFromRaw(final Context context, final int resourceId) {
-        final InputStream inputStream = context.getResources().openRawResource(
-                resourceId);
+        final InputStream inputStream = PluginResource.getInstance(context.getResources()).getRawInputStream(resourceId);
+                //context.getResources().openRawResource(
+                //resourceId);
         final InputStreamReader inputStreamReader = new InputStreamReader(
                 inputStream);
         final BufferedReader bufferedReader = new BufferedReader(

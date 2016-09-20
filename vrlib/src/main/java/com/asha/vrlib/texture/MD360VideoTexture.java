@@ -95,8 +95,13 @@ public class MD360VideoTexture extends MD360Texture {
         int glSurfaceTexture = getCurrentTextureId();
         if (isEmpty(glSurfaceTexture)) return false;
         if (mSurfaceTexture == null) return false;
+        try{
+            mSurfaceTexture.updateTexImage();
+        }catch (Exception ex){
+            return false;
+        }
 
-        mSurfaceTexture.updateTexImage();
         return true;
     }
+
 }
