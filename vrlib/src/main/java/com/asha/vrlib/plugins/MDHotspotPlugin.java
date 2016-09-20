@@ -112,6 +112,11 @@ public class MDHotspotPlugin extends MDAbsPlugin implements IMDHotspot{
     }
 
     @Override
+    public void reset() {
+
+    }
+
+    @Override
     protected boolean removable() {
         return true;
     }

@@ -22,6 +22,10 @@ public abstract class MDAbsPlugin {
         }
     }
 
+    protected final void reInit(){
+        mIsInit = false;
+    }
+
     abstract protected void init(Context context);
 
     abstract public void beforeRenderer(int totalWidth, int totalHeight);
@@ -29,6 +33,8 @@ public abstract class MDAbsPlugin {
     abstract public void renderer(int index, int itemWidth, int itemHeight, MD360Director director);
 
     abstract public void destroy();
+
+    abstract public void reset();
 
     protected MDPosition getModelPosition(){
         return position;

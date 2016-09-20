@@ -74,6 +74,11 @@ public class MDPickerManager {
         }
 
         @Override
+        public void reset() {
+
+        }
+
+        @Override
         protected boolean removable() {
             return false;
         }

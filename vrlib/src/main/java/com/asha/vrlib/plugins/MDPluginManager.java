@@ -41,4 +41,14 @@ public class MDPluginManager {
             }
         }
     }
+
+    public void resetAll(){
+        Iterator<MDAbsPlugin> iterator = mList.iterator();
+        while (iterator.hasNext()){
+            MDAbsPlugin plugin = iterator.next();
+            if (plugin != null){
+                plugin.reset();
+            }
+        }
+    }
 }

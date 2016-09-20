@@ -102,6 +102,11 @@ public class MDMultiFishEyePlugin extends MDAbsPlugin {
     }
 
     @Override
+    public void reset() {
+
+    }
+
+    @Override
     protected MDPosition getModelPosition() {
         return mProjectionModeManager.getModelPosition();
     }

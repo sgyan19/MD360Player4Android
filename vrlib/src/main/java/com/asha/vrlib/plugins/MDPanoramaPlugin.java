@@ -73,6 +73,14 @@ public class MDPanoramaPlugin extends MDAbsPlugin {
     }
 
     @Override
+    public void reset() {
+        if(mTexture != null) {
+            mTexture.destroy();
+        }
+        reInit();
+    }
+
+    @Override
     protected MDPosition getModelPosition() {
         return mProjectionModeManager.getModelPosition();
     }
